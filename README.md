@@ -15,7 +15,7 @@ To create a dll project in Visual Studio 2022:
 Note: the default calling convention should be [__cdecl] in the VS2022 Compiler. If not, set as follows:
 - C/C++ -> Advanced: set [Calling Convention] to [__cdecl (/Gd)]
   
-Now, you can build your Windows dll for Python and copy the dll to your desired folder (in my case libc, see [2]).
+Now, you can build your Windows dll for Python and copy **winCDynamic.dll** to your desired folder (in my case libc, see [2]).
 
 ### Python calls C-dll functions
 To call dll functions in Python, you must pass the correct argument types (i.e., buffered byte string, c_double, ctypes Structure, or ctypes array) and specify the return type. Read the documentation directly in **c4Python.py** for what most of you need to know.
