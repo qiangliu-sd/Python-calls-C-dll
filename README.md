@@ -9,8 +9,8 @@ To create a dll project in Visual Studio 2022:
 2.	Choose C++, and choose _Dynamic-link Library (DLL)_.
 3.	Enter a name, in my case winCDynamic, for your project.
 4.	Delete dllmain.cpp, framework.h, pch.h, pch.cpp from Project.
-5.	Move qlcfuncs.cpp to the project folder (i.e., winCDynamic) and add to the project. Note: If you provide a header file **qlcfuncs.h**, it will NOT work!
-6.	Set the VS2022 Compiler by opening the Property Pages dialog and Configuration Properties in the left pane:
+5.	Move **qlcfuncs.cpp** to the project folder (i.e., winCDynamic) and add to the project. Note: If you provide a header file **qlcfuncs.h**, it will NOT work!
+6.	Set the VS2022 Compiler by opening the _Property Pages dialog_ and _Configuration Properties_ in the left pane:
 
     - C/C++ -> Precompiled Headers: set [Precompiled Headers] to [Not Using Precompiled Headers]
 
@@ -21,9 +21,9 @@ Note: the default calling convention should be [__cdecl] in the VS2022 Compiler.
 Now, you can build your Windows dll for Python and copy the dll to your desired folder (in my case libc, see [2]).
 
 ### Python calls C-dll functions
-To call dll functions in Python, you must pass the correct argument types (i.e., buffered byte string, c_double, ctypes Structure, or ctypes array) and specify the return type. Read the documentation directly in c4Python.py for what most of you need to know.
+To call dll functions in Python, you must pass the correct argument types (i.e., buffered byte string, c_double, ctypes Structure, or ctypes array) and specify the return type. Read the documentation directly in **c4Python.py** for what most of you need to know.
 
-If you run **c4Python.py** (under Command, type: py c4Python.py), you will find three successful calls, such as qlDblRetArgs(). But you will see the following error as well:
+If you run c4Python.py (under Command, type: py c4Python.py), you will find three successful calls, such as qlDblRetArgs(). But you will see the following error as well:
 
     - AttributeError: function 'qlArrayArg' not found
 
@@ -31,8 +31,8 @@ The error is caused by missing the qlArrayArg() function that depends on a C++ f
 
 ### Build Windows (Static) Lib
 To create a static library project in Visual Studio 2022:
-1.	On VS2022 start-up, choose Create a new project.
-2.	Choose C++, and choose Static Library.
+1.	On VS2022 start-up, choose _Create a new project_.
+2.	Choose C++, and choose _Static Library_.
 3.	Enter a name, in my case winCppStatic, for your project.
 4.	Delete framework.h, pch.h, pch.cpp, winCppStatic.cpp from Project.
 5.	Move qlcpptools.h and qlcpptools.cpp to the project folder (i.e., winCppStatic).
@@ -40,7 +40,7 @@ To create a static library project in Visual Studio 2022:
 
 Note: The default calling convention should be [__cdecl] in the VS2022 Compiler. If not, set it as in the Build Windows Dll section.
 
-Build your Windows static library and move qlcpptools.h and winCppStatic.lib to libc (see [2]).
+Build your Windows static library and move **qlcpptools.h** and **winCppStatic.lib** to libc (see [2]).
 
 ### Re-build Windows Dll
 To rebuild the dll, first set up the VS2022 Compiler options:
