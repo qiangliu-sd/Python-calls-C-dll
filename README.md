@@ -5,29 +5,27 @@ With Python ctypes (see [1]), Python can directly call (foreign) C functions def
 
 ### Build Windows Dll
 To create a dll project in Visual Studio 2022:
-1.	On VS2022 start-up, choose Create a new project.
-2.	Choose C++, and choose Dynamic-link Library (DLL).
+1.	On VS2022 start-up, choose _Create a new project_.
+2.	Choose C++, and choose _Dynamic-link Library (DLL)_.
 3.	Enter a name, in my case winCDynamic, for your project.
 4.	Delete dllmain.cpp, framework.h, pch.h, pch.cpp from Project.
-5.	Move qlcfuncs.cpp to the project folder (i.e., winCDynamic) and add to the project. Note: If you provide a header file qlcfuncs.h, it will NOT work!
+5.	Move qlcfuncs.cpp to the project folder (i.e., winCDynamic) and add to the project. Note: If you provide a header file **qlcfuncs.h**, it will NOT work!
 6.	Set the VS2022 Compiler by opening the Property Pages dialog and Configuration Properties in the left pane:
 
-_C/C++ -> Precompiled Headers: 
-set [Precompiled Headers] to [Not Using Precompiled Headers]_
+    - C/C++ -> Precompiled Headers: set [Precompiled Headers] to [Not Using Precompiled Headers]
 
 Note: the default calling convention should be [__cdecl] in the VS2022 Compiler. If not, set as follows:
 
-_C/C++ -> Advanced: 
-		set [Calling Convention] to [\_\_cdecl (/Gd)]_
+    - C/C++ -> Advanced: set [Calling Convention] to [__cdecl (/Gd)]
   
 Now, you can build your Windows dll for Python and copy the dll to your desired folder (in my case libc, see [2]).
 
 ### Python calls C-dll functions
 To call dll functions in Python, you must pass the correct argument types (i.e., buffered byte string, c_double, ctypes Structure, or ctypes array) and specify the return type. Read the documentation directly in c4Python.py for what most of you need to know.
 
-If you run c4Python.py (under Command, type: py c4Python.py), you will find three successful calls, such as qlDblRetArgs(). But you will see the following error as well:
+If you run **c4Python.py** (under Command, type: py c4Python.py), you will find three successful calls, such as qlDblRetArgs(). But you will see the following error as well:
 
-_AttributeError: function 'qlArrayArg' not found_
+    - AttributeError: function 'qlArrayArg' not found
 
 The error is caused by missing the qlArrayArg() function that depends on a C++ function defined in a static library. Let’s build the static library then.
 
@@ -47,11 +45,8 @@ Build your Windows static library and move qlcpptools.h and winCppStatic.lib to 
 ### Re-build Windows Dll
 To rebuild the dll, first set up the VS2022 Compiler options:
 
-_Linker -> Input: 
-add [../libc/winCppStatic.lib] to [Additional Dependencies]_
-
-_C/C++ -> Preprocessor: 
-Add [_QL__INCLUDE_STATIC_LIB_] to [Preprocessor Definitions]_
+    - Linker -> Input: add [../libc/winCppStatic.lib] to [Additional Dependencies]
+    - C/C++ -> Preprocessor: Add [_QL__INCLUDE_STATIC_LIB_] to [Preprocessor Definitions]
 
 Rebuild and run c4Python.py. qlArrayArg() will be successful this time.
 
