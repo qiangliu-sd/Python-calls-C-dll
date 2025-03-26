@@ -1,6 +1,6 @@
 # Call Windows C-dll (foreign) functions directly via ctypes inside Python: A Complete Template
 
-With Python ctypes (see [1]), Python can directly call (foreign) C functions defined in Windows dll. This makes the speed-up of Python via C truly easy. The details, especially with Windows dll, can be confusing, unfortunately. This package provides the necessary step-by-step guide on how to achieve calling C functions in Python (version 3.13).
+With Python ctypes (see [1](#notes), Python can directly call (foreign) C functions defined in Windows dll. This makes the speed-up of Python via C truly easy. The details, especially with Windows dll, can be confusing, unfortunately. This package provides the necessary step-by-step guide on how to achieve calling C functions in Python (version 3.13).
 
 ### Build Windows Dll
 To create a dll project in Visual Studio 2022:
@@ -36,7 +36,7 @@ To create a static library project in Visual Studio 2022:
 
 Note: The default calling convention should be [__cdecl] in the VS2022 Compiler. If not, set it as in the Build Windows Dll section.
 
-Build your Windows static library and move **qlcpptools.h** and **winCppStatic.lib** to libc (see [2]).
+Build your Windows static library and move **qlcpptools.h** and **winCppStatic.lib** to libc (see [2](#notes)).
 
 ### Re-build Windows Dll
 To rebuild the dll, first set up the VS2022 Compiler options:
@@ -46,12 +46,12 @@ To rebuild the dll, first set up the VS2022 Compiler options:
 Rebuild and run c4Python.py. qlArrayArg() will be successful this time.
 
 ### ctypes in Python or PyObject in C++
-Suppose you have a big and complex C++ application (such as my own convertible bonds pricing tool). In that case, it makes more sense to wrap functionalities from static libraries inside a function and export the function in a Windows DLL to the Python client. On the other hand, with a few functions to extend Python by C++, you can use PyObject defined in Python.h to define modules and functions in C++ within a Python package directly (see [3] and my [Cpp-Inside-Python](https://github.com/qiangliu-sd/Cpp-Inside-Python) Github package).
+Suppose you have a big and complex C++ application (such as my own convertible bonds pricing tool). In that case, it makes more sense to wrap functionalities from static libraries inside a function and export the function in a Windows DLL to the Python client. On the other hand, with a few functions to extend Python by C++, you can use PyObject defined in Python.h to define modules and functions in C++ within a Python package directly (see [3](#notes) and my [Cpp-Inside-Python](../Cpp-Inside-Python) Github package).
 
-### Note:
+### Notes:
 [1] [ctypes — A foreign function library for Python](https://docs.python.org/3/library/ctypes.html)
 
-[2] To automatically copy files after the build, select _Configuration Properties > Build Events > Post-Build Event_, and in the Command Line field, enter this command (for the dll project):
+[2] To automatically copy files after the build, select _Configuration Properties > Build Events > Post-Build Event_, and in the *Command Line* field, enter this command (for the dll project):
 > xcopy /y /d $(TargetPath)  ..\\libc
 
 or for the static lib project:
@@ -59,4 +59,4 @@ or for the static lib project:
 
 > xcopy /y /d $(TargetPath) ..\\libc
 
-[3] [Extending Python with C or C++ — Python 3.13.2 documentation](https://docs.python.org/3/extending/extending.html)
+[3] [Extending Python with C or C++ — Python 3.13.2](https://docs.python.org/3/extending/extending.html)
