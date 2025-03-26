@@ -1,4 +1,4 @@
-# Call Windows C-dll (foreign) functions directly via ctypes inside Python: A Complete Template
+# Call Windows C-dll (foreign) functions directly via ctypes inside Python: A complete template
 
 With Python ctypes (see [1](#notes), Python can directly call (foreign) C functions defined in Windows dll. This makes the speed-up of Python via C truly easy. The details, especially with Windows dll, can be confusing, unfortunately. This package provides the necessary step-by-step guide on how to achieve calling C functions in Python (version 3.13).
 
