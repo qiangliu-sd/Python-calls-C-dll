@@ -1,6 +1,6 @@
 # Call Windows C-dll (foreign) functions directly via ctypes inside Python: A complete template
 
-With Python ctypes (see [1](#notes), Python can directly call (foreign) C functions defined in Windows dll. This makes the speed-up of Python via C truly easy. The details, especially with Windows dll, can be confusing, unfortunately. This package provides the necessary step-by-step guide on how to achieve calling C functions in Python (version 3.13).
+With Python ctypes (see [1](#notes)), Python can directly call (foreign) C functions defined in Windows dll. This makes the speed-up of Python via C truly easy. The details, especially with Windows dll, can be confusing, unfortunately. This package provides the necessary step-by-step guide on how to achieve calling C functions in Python (version 3.13).
 
 ### Build Windows Dll
 To create a dll project in Visual Studio 2022:
@@ -31,12 +31,12 @@ To create a static library project in Visual Studio 2022:
 2.	Choose C++, and choose _Static Library_.
 3.	Enter a name, in my case winCppStatic, for your project.
 4.	Delete framework.h, pch.h, pch.cpp, winCppStatic.cpp from Project.
-5.	Move qlcpptools.h and qlcpptools.cpp to the project folder (i.e., winCppStatic).
+5.	Move **qlcpptools.h & qlcpptools.cpp** to the project folder (i.e., winCppStatic) and add them to the project.
 6.	Set up the VS2022 Compiler:	set [Precompiled Headers] to [Not Using Precompiled Headers].
 
 Note: The default calling convention should be [__cdecl] in the VS2022 Compiler. If not, set it as in the Build Windows Dll section.
 
-Build your Windows static library and move **qlcpptools.h** and **winCppStatic.lib** to libc (see [2](#notes)).
+Build your Windows static library and move **qlcpptools.h & winCppStatic.lib** to libc (see [2](#notes)).
 
 ### Re-build Windows Dll
 To rebuild the dll, first set up the VS2022 Compiler options:
