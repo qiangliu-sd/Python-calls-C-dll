@@ -46,7 +46,7 @@ To rebuild the dll, first set up the VS2022 Compiler options:
 Rebuild and run c4Python.py. qlArrayArg() will be successful this time.
 
 ### ctypes in Python or PyObject in C++
-Suppose you have a big and complex C++ application (such as my own [convertible bonds pricing](../../../cvt-bond-pricer) Github package). In that case, it makes more sense to wrap functionalities from static libraries inside a function and export the function in a Windows DLL to the Python client. On the other hand, with a few functions to extend Python by C++, you can use PyObject defined in Python.h to define modules and functions in C++ within a Python package directly (see [3](#notes) and my [Cpp-Inside-Python](../../../Cpp-Inside-Python) Github package).
+Suppose you have a big and complex C++ application (such as my own [convertible bonds pricing](../../../cvt-bond-pricer) Github package). In that case, it makes more sense to wrap functionalities from static libraries inside a function and export the function in a Windows DLL to the Python client. On the other hand, with a few functions to extend Python by C++, you can use PyObject defined in Python.h to define modules and functions in C++ within a Python package directly (see [3](#notes) and my [C++ files inside Python](../../../Cpp-Inside-Python) Github package).
 
 ### Notes:
 [1] [ctypes — A foreign function library for Python](https://docs.python.org/3/library/ctypes.html)
